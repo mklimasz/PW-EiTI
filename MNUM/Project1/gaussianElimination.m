@@ -1,5 +1,5 @@
 function [AB, X] = gaussianElimination(M1, V1)
-  AB = horzcat(M1, rot90(V1));
+  AB = horzcat(M1, V1);
   [height, width] = size(AB);
   X = zeros([height 1]);
   for i = 1:height-1
