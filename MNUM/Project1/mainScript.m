@@ -4,21 +4,38 @@ function [] = mainScript()
   Test = gaussianEliminationCompletePivoting(M, V);
   display(Test);
   time = 0;
-  size = 10;
-  while size < 50
-    [A1, b1, A2, b2, A3, b3] = exampleGenerator(size);
+  size = 50;
+  fprintf("DATA 1\n");
+  for i = 10:10:size
+    fprintf("\n");
+    fprintf("Size %d\n", i);
+    [A1, b1] = exampleGenerator(i, 1);
     tic;
     X1 = gaussianEliminationCompletePivoting(A1, b1);
-    printf("Time for data 1 size %d:", size);
-    display(toc);
+    fprintf("Time %d\n", toc);
+    residuum = A1*X1 - b1;
+    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
+  end
+  fprintf("\nDATA 2\n");
+  for i = 10:10:size
+    fprintf("\n");
+    fprintf("Size %d\n", i);
+    [A2, b2] = exampleGenerator(i, 2);  
     tic;
     X2 = gaussianEliminationCompletePivoting(A2, b2);
-    printf("Time for data 2 size %d:", size);
-    display(toc);
+    fprintf("Time %d\n", toc);
+    residuum = A2*X2 - b2;
+    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
+  end
+  fprintf("\nDATA 3\n");
+  for i = 10:10:size
+    fprintf("\n");
+    fprintf("Size %d\n", i);
+    [A3, b3] = exampleGenerator(i, 3);    
     tic;
     X3 = gaussianEliminationCompletePivoting(A3, b3);
-    printf("Time for data 3 size %d:", size);
-    display(toc);
-    size += 10;
+    fprintf("Time %d\n", toc);
+    residuum = A3*X3 - b3;
+    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
   end
  end

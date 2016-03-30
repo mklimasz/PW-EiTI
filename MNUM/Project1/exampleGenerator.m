@@ -1,41 +1,46 @@
-function [M1, V1, M2, V2, M3, V3] = exampleGenerator(matrixSize)
-  M1 = zeros(matrixSize, matrixSize);
-  for i = 1:matrixSize
-    for j = 1:matrixSize
-      if i==j
-        M1(i,j) = 9;
-      elseif i==j-1 || i==j+1
-        M1(i,j) = 3;
-      else
-        M1(i,j) = 0;
+function [A, b] = exampleGenerator(matrixSize, exampleNumber)
+  if exampleNumber == 1
+    A = zeros(matrixSize, matrixSize);
+    for i = 1:matrixSize
+      for j = 1:matrixSize
+        if i==j
+          A(i,j) = 9;
+        elseif i==j-1 || i==j+1
+          A(i,j) = 3;
+        else
+          A(i,j) = 0;
+        end  
+      end
     end
-  end
-  V1 = zeros(matrixSize, 1);
-  for i = 1:matrixSize
-    V1(i, 1) = 3.4 + 0.6 * i;
-  end
-  M2 = zeros(matrixSize, matrixSize);
-  for i = 1:matrixSize
-    for j = 1:matrixSize
-      if i==j
-        M2(i,j) = 1/3;
-      else
-        M2(i,j) = 5*(i-j)+2;
-      end  
+    b = zeros(matrixSize, 1);
+    for i = 1:matrixSize
+      b(i, 1) = 3.4 + 0.6 * i;
     end
-  end
-  V2 = zeros(matrixSize, 1);
-  for i = 1:matrixSize
-    V2(i,1) = 8+0.2*i;
-  end  
-  M3 = zeros(matrixSize, matrixSize);
-  for i = 1:matrixSize
-    for j = 1:matrixSize
-      M3(i,j) = 1/[4*(i+j+1)];
+  elseif exampleNumber == 2
+    A = zeros(matrixSize, matrixSize);
+    for i = 1:matrixSize
+      for j = 1:matrixSize
+        if i==j
+          A(i,j) = 1/3;
+        else
+          A(i,j) = 5*(i-j)+2;
+        end  
+      end
     end
-  end
-  V3 = zeros(matrixSize, 1);
-  for i = 1:matrixSize
-    V3(i,1) = 2+2/(i+1);
-  end
+    b = zeros(matrixSize, 1);
+    for i = 1:matrixSize
+      b(i,1) = 8+0.2*i;
+    end 
+  elseif exampleNumber == 3  
+    A = zeros(matrixSize, matrixSize);
+    for i = 1:matrixSize
+      for j = 1:matrixSize
+        A(i,j) = 1/[4*(i+j+1)];
+      end
+    end
+    b = zeros(matrixSize, 1);
+    for i = 1:matrixSize
+      b(i,1) = 2+2/(i+1);
+    end
+  end 
 end
