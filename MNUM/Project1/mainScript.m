@@ -6,17 +6,17 @@ function [] = mainScript()
   time = 0;
   size = 10;
   while size < 50
-    [M1, V1, M2, V2, M3, V3] = exampleGenerator(size);
+    [A1, b1, A2, b2, A3, b3] = exampleGenerator(size);
     tic;
-    X1 = gaussianEliminationCompletePivoting(M1, V1);
+    X1 = gaussianEliminationCompletePivoting(A1, b1);
     printf("Time for data 1 size %d:", size);
     display(toc);
     tic;
-    X2 = gaussianEliminationCompletePivoting(M2, V2);
+    X2 = gaussianEliminationCompletePivoting(A2, b2);
     printf("Time for data 2 size %d:", size);
     display(toc);
     tic;
-    X3 = gaussianEliminationCompletePivoting(M3, V3);
+    X3 = gaussianEliminationCompletePivoting(A3, b3);
     printf("Time for data 3 size %d:", size);
     display(toc);
     size += 10;
