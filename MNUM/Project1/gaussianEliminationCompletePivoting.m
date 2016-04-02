@@ -1,4 +1,4 @@
-function [X] = gaussianEliminationCompletePivoting(A, b)
+function [X, AB] = gaussianEliminationCompletePivoting(A, b)
   AB = horzcat(A, b);
   [height, width] = size(AB);
   P = zeros([height 2]);

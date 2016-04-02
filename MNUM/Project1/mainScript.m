@@ -1,37 +1,64 @@
 function [] = mainScript()
-  start = 10;
-  size = 200;
   fprintf("DATA 1\n");
-  for i = start:3*start:size
+  MAX_ITERATIONS = 3;
+  vsize = zeros(MAX_ITERATIONS, 1);
+  verr = zeros(MAX_ITERATIONS, 1);
+  for i = 1:MAX_ITERATIONS
+    size = 2^i * 10;
     fprintf("\n");
-    fprintf("Size %d\n", i);
-    [A1, b1] = exampleGenerator(i, 1);
+    fprintf("Size %d\n", size);
+    [A, b] = exampleGenerator(size, 1);
     tic;
-    X1 = gaussianEliminationCompletePivoting(A1, b1);
+    X = gaussianEliminationCompletePivoting(A, b);
     fprintf("Time %d\n", toc);
-    residuum = A1*X1 - b1;
-    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
+    residuum = A*X - b;
+    residuumErr = calculateNorm(residuum);
+    fprintf("Error as residuum norm %d\n", residuumErr);
+    vsize(i) = size;
+    verr(i) = residuumErr;
   end
+  figure();
+  plot(vsize, verr, "rs.");
+  title("Dane 1");
   fprintf("\nDATA 2\n");
-  for i = start:3*start:size
+  for i = 1:MAX_ITERATIONS
+    size = 2^i * 10;
     fprintf("\n");
-    fprintf("Size %d\n", i);
-    [A2, b2] = exampleGenerator(i, 2);  
+    fprintf("Size %d\n", size);
+    [A, b] = exampleGenerator(size, 2);  
     tic;
-    X2 = gaussianEliminationCompletePivoting(A2, b2);
+    X = gaussianEliminationCompletePivoting(A, b);
     fprintf("Time %d\n", toc);
-    residuum = A2*X2 - b2;
-    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
+    residuum = A*X - b;
+    residuumErr = calculateNorm(residuum);
+    fprintf("Error as residuum norm %d\n", residuumErr);
+    vsize(i) = size;
+    verr(i) = residuumErr;
   end
+  figure();
+  plot(vsize, verr, "rs.");
+  title("Dane 2");
   fprintf("\nDATA 3\n");
-  for i = start:3*start:size
+  for i = 1:MAX_ITERATIONS
+    size = 2^i * 10;
     fprintf("\n");
-    fprintf("Size %d\n", i);
-    [A3, b3] = exampleGenerator(i, 3);    
+    fprintf("Size %d\n", size);
+    [A, b] = exampleGenerator(size, 3);    
     tic;
-    X3 = gaussianEliminationCompletePivoting(A3, b3);
+    [X, AB] = gaussianEliminationCompletePivoting(A, b);
     fprintf("Time %d\n", toc);
-    residuum = A3*X3 - b3;
-    fprintf("Error as residuum norm %d\n", calculateNorm(residuum));
+    residuum = A*X - b;
+    residuumErr = calculateNorm(residuum);
+    fprintf("Error as residuum norm %d\n", residuumErr);
+    vsize(i) = size;
+    verr(i) = residuumErr;
+    if size > 132312310
+      X = iterativeCorrection(AB, b);
+      residuum = A*X - b;
+      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
+    end
   end
+  figure();
+  plot(vsize, verr, "rs.");
+  title("Dane 3");
  end
