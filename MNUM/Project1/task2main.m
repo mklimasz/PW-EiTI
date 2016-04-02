@@ -1,4 +1,4 @@
-function [] = mainScript()
+function [] = task2main()
   fprintf("DATA 1\n");
   MAX_ITERATIONS = 3;
   vsize = zeros(MAX_ITERATIONS, 1);
@@ -16,6 +16,11 @@ function [] = mainScript()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
+    if size > 132312310
+      X = iterativeCorrection(AB, b);
+      residuum = A*X - b;
+      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
+    end
   end
   figure();
   plot(vsize, verr, "rs.");
@@ -34,6 +39,11 @@ function [] = mainScript()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
+    if size > 132312310
+      X = iterativeCorrection(AB, b);
+      residuum = A*X - b;
+      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
+    end
   end
   figure();
   plot(vsize, verr, "rs.");
@@ -52,6 +62,8 @@ function [] = mainScript()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
+    display(X);
+    display(double(A\b));
     if size > 132312310
       X = iterativeCorrection(AB, b);
       residuum = A*X - b;
@@ -61,4 +73,4 @@ function [] = mainScript()
   figure();
   plot(vsize, verr, "rs.");
   title("Dane 3");
- end
+end

@@ -1,7 +1,8 @@
-function [err] = calculateNorm(residuum)
+function [err] = calculateNorm(vector)
+%norm 2 of vector
   sum = 0;
-  for i = 1:size(residuum)
-    sum += residuum(i,1)^2;
+  for i = 1:size(vector)
+    sum += vector(i,1)^2;
   end
   err = sqrt(sum);
 end
