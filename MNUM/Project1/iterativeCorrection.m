@@ -3,6 +3,7 @@ function [X] = iterativeCorrection(AB, X)
   height = matrixSize(1);
   width = matrixSize(2);
   oldX = X;
+  %spliting data on A and b
   A = AB([1:height],[1:height]);
   b = AB([1:height],[width:width]);
   residuum = A*X - b;
@@ -20,6 +21,7 @@ function [X] = iterativeCorrection(AB, X)
     X = X - dX;
     newResiduum = A*X - b;
   end
+  %check if iterative correction had result, if it didnt return old X
   if calculateNorm(residuum) > calculateNorm(newResiduum)
     fprintf('Result is better after correction\n');
   else

@@ -1,11 +1,11 @@
 function [x] = gaussSeidelMethod(A, b)
   iters = 10000;
-  n = length(A);
-  x = zeros([n 1]);
+  size = length(A);
+  x = zeros([size 1]);
   for k = 1:iters
-    for i = 1:n
+    for i = 1:size
       sum = 0;
-      for j = 1:n 
+      for j = 1:size 
         if j != i
           sum = sum + A(i,j)*x(j);
         end
