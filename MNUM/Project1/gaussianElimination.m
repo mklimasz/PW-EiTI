@@ -13,7 +13,7 @@ function [X, AB] = gaussianElimination(M1, V1)
   for i = height:-1:1
     s = AB(i,width);
     for j = height:-1:i+1
-      s -= AB(i,j) * X(j); 
+      s = s- AB(i,j) * X(j); 
     end
     X(i) = s / AB(i,i);
   end

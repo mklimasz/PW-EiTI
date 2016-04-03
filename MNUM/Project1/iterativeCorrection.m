@@ -13,7 +13,7 @@ function [X] = iterativeCorrection(AB, X)
     for i = height:-1:1
       s = AB(i,width);
       for j = height:-1:i+1
-        s -= AB(i,j) * dX(j); 
+        s = s - AB(i,j) * dX(j); 
       end
       dX(i) = s / AB(i,i);
     end
@@ -21,9 +21,9 @@ function [X] = iterativeCorrection(AB, X)
     newResiduum = A*X - b;
   end
   if calculateNorm(residuum) > calculateNorm(newResiduum)
-    fprintf("Result is better after correction\n");
+    fprintf('Result is better after correction\n');
   else
-    fprintf("Result wasnt better after correction\n");  
+    fprintf('Result wasnt better after correction\n');  
     X = oldX;
   end
 end

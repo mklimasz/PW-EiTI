@@ -7,8 +7,8 @@ function [X, AB] = gaussianEliminationCompletePivoting(A, b)
     subMatrix = AB([i:height],[i:height]);
     [num idx] = max(subMatrix(:));
     [maxRow maxColumn] = ind2sub(size(subMatrix),idx);
-    maxRow += i - 1;
-    maxColumn += i - 1;
+    maxRow = maxRow + i - 1;
+    maxColumn = maxColumn + i - 1;
     AB([i maxRow],:) = AB([maxRow i],:);
     %Every column change will make change in result X order
     P(i,:) = [i maxColumn]; 
@@ -16,14 +16,14 @@ function [X, AB] = gaussianEliminationCompletePivoting(A, b)
     for j = i+1:height
       ratio = AB(j, i) / AB(i,i);
       for k = i:width
-        AB(j,k) -= ratio * AB(i,k);
+        AB(j,k) = AB(j,k) - ratio * AB(i,k);
       end 
     end
   end
   for i = height:-1:1
     s = AB(i,width);
     for j = height:-1:i+1
-      s -= AB(i,j) * X(j); 
+      s = s - AB(i,j) * X(j); 
     end
     X(i) = s / AB(i,i);
   end

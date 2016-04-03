@@ -6,14 +6,14 @@ function [] = task3main()
   b = [10; 0; -10; -20];
   x = gaussSeidelMethod(A, b);
   residuum = A*x - b;
-  fprintf("Given example residuum norm %d \n", calculateNorm(residuum));
-  fprintf("Results for example 1 with Gauss-Seidel method\n");
+  fprintf('Given example residuum norm %d \n', calculateNorm(residuum));
+  fprintf('Results for example 1 with Gauss-Seidel method\n');
   [A b] = exampleGenerator(20, 1);
   display(gaussSeidelMethod(A, b));
-  fprintf("Results for example 2 with Gauss-Seidel method\n");
+  fprintf('Results for example 2 with Gauss-Seidel method\n');
   [A b] = exampleGenerator(20, 2);
   display(gaussSeidelMethod(A, b));
-  fprintf("Results for example 3 with Gauss-Seidel method\n");
+  fprintf('Results for example 3 with Gauss-Seidel method\n');
   [A b] = exampleGenerator(20, 3);
   display(gaussSeidelMethod(A, b));
 end
