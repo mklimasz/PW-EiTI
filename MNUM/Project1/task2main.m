@@ -1,6 +1,6 @@
 function [] = task2main()
   fprintf("DATA 1\n");
-  MAX_ITERATIONS = 1;
+  MAX_ITERATIONS = 2;
   vsize = zeros(MAX_ITERATIONS, 1);
   verr = zeros(MAX_ITERATIONS, 1);
   for i = 1:MAX_ITERATIONS
@@ -16,11 +16,6 @@ function [] = task2main()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
-    if size > 132312310
-      X = iterativeCorrection(AB, b);
-      residuum = A*X - b;
-      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
-    end
   end
   figure();
   plot(vsize, verr, "rs.");
@@ -39,11 +34,6 @@ function [] = task2main()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
-    if size > 132312310
-      X = iterativeCorrection(AB, b);
-      residuum = A*X - b;
-      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
-    end
   end
   figure();
   plot(vsize, verr, "rs.");
@@ -55,18 +45,13 @@ function [] = task2main()
     fprintf("Size %d\n", size);
     [A, b] = exampleGenerator(size, 3);    
     tic;
-    [X, AB] = gaussianEliminationCompletePivoting(A, b);
+    X = gaussianEliminationCompletePivoting(A, b);
     fprintf("Time %d\n", toc);
     residuum = A*X - b;
     residuumErr = calculateNorm(residuum);
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
-    if size > 132312310
-      X = iterativeCorrection(AB, b);
-      residuum = A*X - b;
-      fprintf("Error after correction %d\n", calculateNorm(residuum)); 
-    end
   end
   figure();
   plot(vsize, verr, "rs.");

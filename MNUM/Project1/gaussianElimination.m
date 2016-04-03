@@ -1,4 +1,4 @@
-function [AB, X] = gaussianElimination(M1, V1)
+function [X, AB] = gaussianElimination(M1, V1)
   AB = horzcat(M1, V1);
   [height, width] = size(AB);
   X = zeros([height 1]);
