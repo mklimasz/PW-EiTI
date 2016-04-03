@@ -8,12 +8,18 @@ function [] = task3main()
   residuum = A*x - b;
   fprintf('Given example residuum norm %d \n', calculateNorm(residuum));
   fprintf('Results for example 1 with Gauss-Seidel method\n');
-  [A b] = exampleGenerator(20, 1);
+  [A b] = exampleGenerator(15, 1);
   display(gaussSeidelMethod(A, b));
+  fprintf('Results for example 1 with Gauss Elimination with complete pivoting\n');
+  display(gaussianEliminationCompletePivoting(A,b));
   fprintf('Results for example 2 with Gauss-Seidel method\n');
-  [A b] = exampleGenerator(20, 2);
+  [A b] = exampleGenerator(15, 2);
   display(gaussSeidelMethod(A, b));
+  fprintf('Results for example 2 with Gauss Elimination with complete pivoting\n');
+  display(gaussianEliminationCompletePivoting(A,b));
   fprintf('Results for example 3 with Gauss-Seidel method\n');
-  [A b] = exampleGenerator(20, 3);
+  [A b] = exampleGenerator(15, 3);
   display(gaussSeidelMethod(A, b));
+  fprintf('Results for example 3 with Gauss Elimination with complete pivoting\n');
+  display(gaussianEliminationCompletePivoting(A,b));
 end

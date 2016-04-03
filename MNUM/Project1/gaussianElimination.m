@@ -6,7 +6,7 @@ function [X, AB] = gaussianElimination(M1, V1)
     for j = i+1:height
       ratio = AB(j, i) / AB(i,i);
       for k = i:width
-        AB(j,k) -= ratio * AB(i,k);
+        AB(j,k) = AB(j,k) - ratio * AB(i,k);
       end 
     end
   end
