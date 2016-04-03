@@ -7,4 +7,8 @@ function [] = task3main()
   x = gaussSeidelMethod(A, b);
   residuum = A*x - b;
   fprintf("Given example residuum norm %d \n", calculateNorm(residuum));
+  [A b] = exampleGenerator(20, 3);
+  display(A\b);
+  display(gaussianEliminationCompletePivoting(A, b));
+  display(gaussSeidelMethod(A, b));
 end

@@ -4,11 +4,11 @@ function [A, b] = exampleGenerator(matrixSize, exampleNumber)
     for i = 1:matrixSize
       for j = 1:matrixSize
         if i==j
-          A(i,j) = 9;
+          A(i,j) = 9.0;
         elseif i==j-1 || i==j+1
-          A(i,j) = 3;
+          A(i,j) = 3.0;
         else
-          A(i,j) = 0;
+          A(i,j) = 0.0;
         end  
       end
     end

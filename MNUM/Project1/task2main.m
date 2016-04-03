@@ -1,6 +1,6 @@
 function [] = task2main()
   fprintf("DATA 1\n");
-  MAX_ITERATIONS = 2;
+  MAX_ITERATIONS = 6;
   vsize = zeros(MAX_ITERATIONS, 1);
   verr = zeros(MAX_ITERATIONS, 1);
   for i = 1:MAX_ITERATIONS
