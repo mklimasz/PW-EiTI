@@ -1,10 +1,10 @@
 function [] = task2main()
   fprintf("DATA 1\n");
-  MAX_ITERATIONS = 3;
+  MAX_ITERATIONS = 1;
   vsize = zeros(MAX_ITERATIONS, 1);
   verr = zeros(MAX_ITERATIONS, 1);
   for i = 1:MAX_ITERATIONS
-    size = 2^i * 10;
+    size = 2^(i-1) * 10;
     fprintf("\n");
     fprintf("Size %d\n", size);
     [A, b] = exampleGenerator(size, 1);
@@ -27,7 +27,7 @@ function [] = task2main()
   title("Dane 1");
   fprintf("\nDATA 2\n");
   for i = 1:MAX_ITERATIONS
-    size = 2^i * 10;
+    size = 2^(i-1) * 10;
     fprintf("\n");
     fprintf("Size %d\n", size);
     [A, b] = exampleGenerator(size, 2);  
@@ -50,7 +50,7 @@ function [] = task2main()
   title("Dane 2");
   fprintf("\nDATA 3\n");
   for i = 1:MAX_ITERATIONS
-    size = 2^i * 10;
+    size = 2^(i-1) * 10;
     fprintf("\n");
     fprintf("Size %d\n", size);
     [A, b] = exampleGenerator(size, 3);    
@@ -62,8 +62,6 @@ function [] = task2main()
     fprintf("Error as residuum norm %d\n", residuumErr);
     vsize(i) = size;
     verr(i) = residuumErr;
-    display(X);
-    display(double(A\b));
     if size > 132312310
       X = iterativeCorrection(AB, b);
       residuum = A*X - b;

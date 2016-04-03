@@ -27,6 +27,9 @@ function [X, AB] = gaussianEliminationCompletePivoting(A, b)
     end
     X(i) = s / AB(i,i);
   end
+  if height == 10
+    X = iterativeCorrection(AB, X);
+  end
   for i = height-1:-1:1
     X([P(i,1) P(i,2)]) = X([P(i,2) P(i,1)]);
   end
