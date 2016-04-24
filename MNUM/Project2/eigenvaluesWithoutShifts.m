@@ -1,6 +1,6 @@
 function [eigenvalues, iteration] = eigenvaluesWithoutShifts(A, tol, maxIterations)
     iteration = 0;
-    while iteration < maxIterations && max(max(A-diag(diag(D)))) > tol
+    while iteration < maxIterations && max(max(A-diag(diag(A)))) > tol
         [Q, R] = qrGramSchmidt(A);
         A = R * Q;
         iteration = iteration + 1;
