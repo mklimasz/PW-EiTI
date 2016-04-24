@@ -2,11 +2,11 @@ function [A, b] = generateExamples(exampleNumber, size)
     height = 2 * size;
     width = size;
     A = zeros(height, width);
-    B = zeros(height, 1);
+    b = zeros(height, 1);
     if exampleNumber == 1
         for i = 1:height
             for j = 1:width
-                B(i, j) = 8 + 0.2 * i;
+                b(i) = 8 + 0.2 * i;
                 if i == j
                     A(i, j) = 1/3;
                 else
@@ -17,7 +17,7 @@ function [A, b] = generateExamples(exampleNumber, size)
     elseif exampleNumber == 2
         for i = 1:height
             for j = 1:width
-                B(i, j) = 2 + 2/(i + 1);
+                b(i) = 2 + 2/(i + 1);
                 A(i,j) = 1/(4* (i + j + 1));
             end
         end
