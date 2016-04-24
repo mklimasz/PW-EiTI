@@ -1,7 +1,8 @@
-function [eigenvalues, iteration] = eigenvaluesWithShifts(A, tol, maxIterations)
+function [eigenvalues, allIterations] = eigenvaluesWithShifts(A, tol, maxIterations)
     height = size(A,1);
     eigenvalues = diag(zeros(height));
     initialSubmatrix = A;
+    allIterations = 0;
     for k = height:-1:2
         DK = initialSubmatrix;
         iteration = 0;
@@ -16,6 +17,7 @@ function [eigenvalues, iteration] = eigenvaluesWithShifts(A, tol, maxIterations)
             [Q, R] = qrGramSchmidt(DK);
             DK = R * Q + eye(k) * shift;
             iteration = iteration + 1;
+            allIterations = allIterations + 1;
         end
         if iteration > maxIterations
             error('More iterations needed');
